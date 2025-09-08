@@ -1,0 +1,337 @@
+{
+  "summary": {
+    "pass": 0,
+    "fail": 1,
+    "duration": "00:00:07",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [
+    {
+      "rule": "Online Sales Deletion Confirmation",
+      "table": "",
+      "keys": "",
+      "detail": "50 rows",
+      "severity": "CRITICAL"
+    }
+  ],
+  "log": "[start] Submitting 1 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/1: Online Sales Deletion Confirmation\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "Online Sales Deletion Confirmation",
+      "status": "failed",
+      "row_count": 50,
+      "details": {
+        "passed": false,
+        "row_count": 50,
+        "ge_available": true,
+        "details": {
+          "success": false,
+          "results": [
+            {
+              "success": false,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 50
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 0,
+            "unsuccessful_expectations": 1,
+            "success_percent": 0
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-08T20:55:23.337935+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "09bf6f08-8cc8-11f0-862b-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250908T152523.337884Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [
+        {
+          "SalesOrderNumber": "SO43697",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43698",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43699",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43700",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43701",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43702",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43703",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43704",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43705",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43706",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43707",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43708",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43709",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43710",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43711",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43712",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43713",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43714",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43715",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43716",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43717",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43718",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43719",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43720",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43721",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43722",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43723",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43724",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43725",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43726",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43727",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43728",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43729",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43730",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43731",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43732",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43733",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43734",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43735",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43736",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43737",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43738",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43739",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43740",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43741",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43742",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43743",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43744",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43745",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        },
+        {
+          "SalesOrderNumber": "SO43746",
+          "SalesOrderLineNumber": 1,
+          "violation_reason": "Record still exists in factinternetsales after deletion process"
+        }
+      ],
+      "sql": "SELECT `SalesOrderNumber`,\n       `SalesOrderLineNumber`,\n       'Record still exists in factinternetsales after deletion process' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales`",
+      "severity": "CRITICAL",
+      "description": "Verify that all records from the online sales dataset (`factinternetsales`) have been deleted. This rule checks for any remaining rows in the table.",
+      "timing_sec": {
+        "sql": 3.611
+      }
+    }
+  ]
+}
