@@ -1,0 +1,387 @@
+{
+  "summary": {
+    "pass": 0,
+    "fail": 1,
+    "duration": "00:00:10",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [
+    {
+      "rule": "Calculate net revenue",
+      "table": "",
+      "keys": "",
+      "detail": "50 rows",
+      "severity": "MEDIUM"
+    }
+  ],
+  "log": "[start] Submitting 1 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/1: Calculate net revenue\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "Calculate net revenue",
+      "status": "failed",
+      "row_count": 50,
+      "details": {
+        "passed": false,
+        "row_count": 50,
+        "ge_available": true,
+        "details": {
+          "success": false,
+          "results": [
+            {
+              "success": false,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 50
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 0,
+            "unsuccessful_expectations": 1,
+            "success_percent": 0
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T17:37:42.708587+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "96acaf9a-8d75-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T120742.708547Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 1,
+          "NetRevenue": "2024.9940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 2,
+          "NetRevenue": "6074.9820",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 3,
+          "NetRevenue": "2024.9940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 4,
+          "NetRevenue": "2039.9940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 5,
+          "NetRevenue": "2039.9940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 6,
+          "NetRevenue": "4079.9880",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 7,
+          "NetRevenue": "2039.9940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 8,
+          "NetRevenue": "86.5212",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 9,
+          "NetRevenue": "28.8404",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 10,
+          "NetRevenue": "34.2000",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 11,
+          "NetRevenue": "10.3730",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43659",
+          "SalesOrderLineNumber": 12,
+          "NetRevenue": "80.7460",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43660",
+          "SalesOrderLineNumber": 1,
+          "NetRevenue": "419.4589",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43660",
+          "SalesOrderLineNumber": 2,
+          "NetRevenue": "874.7940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 1,
+          "NetRevenue": "809.7600",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 2,
+          "NetRevenue": "714.7043",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 3,
+          "NetRevenue": "1429.4086",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 4,
+          "NetRevenue": "20.7460",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 5,
+          "NetRevenue": "115.3616",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 6,
+          "NetRevenue": "1445.1898",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 7,
+          "NetRevenue": "6074.9820",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 8,
+          "NetRevenue": "4049.9880",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 9,
+          "NetRevenue": "40.3730",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 10,
+          "NetRevenue": "1637.4000",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 11,
+          "NetRevenue": "8099.9760",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 12,
+          "NetRevenue": "4079.9880",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 13,
+          "NetRevenue": "57.6808",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 14,
+          "NetRevenue": "4049.9880",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43661",
+          "SalesOrderLineNumber": 15,
+          "NetRevenue": "100.9325",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 1,
+          "NetRevenue": "1258.3767",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 2,
+          "NetRevenue": "2097.2945",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 3,
+          "NetRevenue": "367.8764",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 4,
+          "NetRevenue": "3499.1760",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 5,
+          "NetRevenue": "551.8146",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 6,
+          "NetRevenue": "2097.2945",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 7,
+          "NetRevenue": "1258.3767",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 8,
+          "NetRevenue": "838.9178",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 9,
+          "NetRevenue": "2146.9620",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 10,
+          "NetRevenue": "874.7940",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 11,
+          "NetRevenue": "1258.3767",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 12,
+          "NetRevenue": "356.8980",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 13,
+          "NetRevenue": "5248.7640",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 14,
+          "NetRevenue": "183.9382",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 15,
+          "NetRevenue": "535.7424",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 16,
+          "NetRevenue": "2146.9620",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 17,
+          "NetRevenue": "1258.3767",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 18,
+          "NetRevenue": "183.9382",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 19,
+          "NetRevenue": "356.8980",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 20,
+          "NetRevenue": "178.5808",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        },
+        {
+          "SalesOrderNumber": "SO43662",
+          "SalesOrderLineNumber": 21,
+          "NetRevenue": "1258.3767",
+          "violation_reason": "Net revenue calculated by subtracting returns from sales"
+        }
+      ],
+      "sql": "SELECT `SalesOrderNumber`,\n       `SalesOrderLineNumber`,\n       SUM(CASE\n               WHEN `SalesAmount` >= 0 THEN `SalesAmount`\n               ELSE 0\n           END) - SUM(CASE\n                          WHEN `SalesAmount` < 0 THEN ABS(`SalesAmount`)\n                          ELSE 0\n                      END) AS `NetRevenue`,\n       'Net revenue calculated by subtracting returns from sales' AS `violation_reason`\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factresellersales`\nGROUP BY `SalesOrderNumber`,\n         `SalesOrderLineNumber`",
+      "severity": "MEDIUM",
+      "description": "This rule calculates the net revenue by subtracting returns from sales. Assumes that sales and returns data are stored in the `factresellersales` table and that returns can be identified by negative values in the `SalesAmount` column.",
+      "timing_sec": {
+        "sql": 7.414
+      }
+    }
+  ]
+}
