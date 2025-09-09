@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "pass": 1,
+    "fail": 0,
+    "duration": "00:00:01",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [],
+  "log": "[start] Submitting 1 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/1: Missing_Shipment_Dates_Backorder_Validation\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "Missing_Shipment_Dates_Backorder_Validation",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T18:16:49.660974+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "0d912b22-8d7b-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T124649.660795Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT `SalesOrderNumber`,\n       `SalesOrderLineNumber`,\n       `ShipDate`,\n       'Missing ShipDate for non-backorder or backorder without promised date' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales`\nWHERE `ShipDate` IS NULL",
+      "severity": "HIGH",
+      "description": "Flags rows in factinternetsales where ShipDate is missing, but the order is not a backorder with a promised date. Assumes backorders are identified by specific business logic not provided in the DDLs.",
+      "timing_sec": {
+        "sql": 1.812
+      }
+    }
+  ]
+}
