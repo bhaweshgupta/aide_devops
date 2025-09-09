@@ -1,0 +1,342 @@
+{
+  "summary": {
+    "pass": 5,
+    "fail": 0,
+    "duration": "00:00:02",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [],
+  "log": "[start] Submitting 5 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/5: Line Uniqueness Check\n[run] Executing rule 2/5: Valid Customer Link Check\n[run] Executing rule 3/5: Valid Product Link Check\n[run] Executing rule 4/5: Non-Negative Amounts Check\n[run] Executing rule 5/5: Promotion Window Compliance Check\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "Line Uniqueness Check",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T18:34:55.823328+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "94f86614-8d7d-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T130455.823218Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT `SalesOrderNumber`,\n       `SalesOrderLineNumber`,\n       'Duplicate line detected in factinternetsales' AS violation_reason\nFROM\n  (SELECT `SalesOrderNumber`,\n          `SalesOrderLineNumber`,\n          ROW_NUMBER() OVER (PARTITION BY `SalesOrderNumber`, `SalesOrderLineNumber`\n                             ORDER BY `SalesOrderNumber`) AS row_num\n   FROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales`) subquery\nWHERE row_num > 1",
+      "severity": "CRITICAL",
+      "description": "Ensure that each line in factinternetsales is unique based on SalesOrderNumber and SalesOrderLineNumber.",
+      "timing_sec": {
+        "sql": 2.269
+      }
+    },
+    {
+      "name": "Valid Customer Link Check",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T18:34:58.389842+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "96800f46-8d7d-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T130458.389719Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT f.`SalesOrderNumber`,\n       f.`SalesOrderLineNumber`,\n       f.`CustomerKey`,\n       'CustomerKey does not reference an existing customer in dimcustomer' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales` f\nWHERE NOT EXISTS\n    (SELECT 1\n     FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` d\n     WHERE d.`CustomerKey` = f.`CustomerKey`)",
+      "severity": "HIGH",
+      "description": "Verify that each customer referenced in factinternetsales exists in dimcustomer.",
+      "timing_sec": {
+        "sql": 2.561
+      }
+    },
+    {
+      "name": "Valid Product Link Check",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T18:35:00.671502+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "97dbc7d6-8d7d-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T130500.671358Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT f.`SalesOrderNumber`,\n       f.`SalesOrderLineNumber`,\n       f.`ProductKey`,\n       'ProductKey does not reference an existing product in dimproduct' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales` f\nWHERE NOT EXISTS\n    (SELECT 1\n     FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproduct` p\n     WHERE p.`ProductKey` = f.`ProductKey`)",
+      "severity": "HIGH",
+      "description": "Verify that each product referenced in factinternetsales exists in dimproduct.",
+      "timing_sec": {
+        "sql": 2.272
+      }
+    },
+    {
+      "name": "Non-Negative Amounts Check",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T18:35:02.624219+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "990625ca-8d7d-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T130502.624082Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT `SalesOrderNumber`,\n       `SalesOrderLineNumber`,\n       `SalesAmount`,\n       `TaxAmt`,\n       `Freight`,\n       'Negative monetary amount detected' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales`\nWHERE `SalesAmount` < 0\n  OR `TaxAmt` < 0\n  OR `Freight` < 0",
+      "severity": "MEDIUM",
+      "description": "Ensure that all monetary amounts in factinternetsales are non-negative.",
+      "timing_sec": {
+        "sql": 1.948
+      }
+    },
+    {
+      "name": "Promotion Window Compliance Check",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-09T18:35:04.836295+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "9a57a796-8d7d-11f0-b41e-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250909T130504.836155Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT f.`SalesOrderNumber`,\n       f.`SalesOrderLineNumber`,\n       f.`PromotionKey`,\n       p.`StartDate`,\n       p.`EndDate`,\n       'Promotion applied outside its valid date range' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factinternetsales` f\nJOIN `aigdqr-ragstoriches`.`adv_works_dw`.`dimpromotion` p ON f.`PromotionKey` = p.`PromotionKey`\nWHERE f.`OrderDate` NOT BETWEEN p.`StartDate` AND p.`EndDate`",
+      "severity": "HIGH",
+      "description": "Ensure that promotions applied in factinternetsales fall within their valid date range in dimpromotion.",
+      "timing_sec": {
+        "sql": 2.207
+      }
+    }
+  ]
+}
