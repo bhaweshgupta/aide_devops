@@ -1,0 +1,519 @@
+{
+  "summary": {
+    "pass": 2,
+    "fail": 1,
+    "duration": "00:00:02",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [
+    {
+      "rule": "Customer addresses with missing address lines",
+      "table": "",
+      "keys": "",
+      "detail": "50 rows",
+      "severity": "MEDIUM"
+    }
+  ],
+  "log": "[start] Submitting 3 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/3: Customer addresses with missing or invalid postal codes\n[run] Executing rule 2/3: Customer addresses with inconsistent geography keys\n[run] Executing rule 3/3: Customer addresses with missing address lines\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "Customer addresses with missing or invalid postal codes",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T17:00:09.388768+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "807b9e90-92f0-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T113009.388632Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT c.CustomerKey,\n       c.AddressLine1,\n       c.AddressLine2,\n       g.PostalCode,\n       'Customer address has missing or invalid postal code' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` c\nLEFT JOIN `aigdqr-ragstoriches`.`adv_works_dw`.`dimgeography` g ON c.GeographyKey = g.GeographyKey\nWHERE g.PostalCode IS NULL\n  OR g.PostalCode = ''",
+      "severity": "HIGH",
+      "description": "This rule checks if any customer in the dimcustomer table has a missing or invalid postal code by verifying the postal code against the dimgeography table.",
+      "timing_sec": {
+        "sql": 1.936
+      }
+    },
+    {
+      "name": "Customer addresses with inconsistent geography keys",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T17:00:11.105438+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "81819c2c-92f0-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T113011.105314Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT c.CustomerKey,\n       c.GeographyKey,\n       'Customer references an invalid geography key' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` c\nWHERE NOT EXISTS\n    (SELECT 1\n     FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimgeography` g\n     WHERE c.GeographyKey = g.GeographyKey)",
+      "severity": "CRITICAL",
+      "description": "This rule ensures that all customers in the dimcustomer table reference valid geography keys in the dimgeography table.",
+      "timing_sec": {
+        "sql": 1.71
+      }
+    },
+    {
+      "name": "Customer addresses with missing address lines",
+      "status": "failed",
+      "row_count": 50,
+      "details": {
+        "passed": false,
+        "row_count": 50,
+        "ge_available": true,
+        "details": {
+          "success": false,
+          "results": [
+            {
+              "success": false,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 50
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 0,
+            "unsuccessful_expectations": 1,
+            "success_percent": 0
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T17:00:13.773460+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "8318b610-92f0-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T113013.773371Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [
+        {
+          "CustomerKey": 11000,
+          "AddressLine1": "3761 N. 14th St",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11001,
+          "AddressLine1": "2243 W St.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11002,
+          "AddressLine1": "5844 Linden Land",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11003,
+          "AddressLine1": "1825 Village Pl.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11004,
+          "AddressLine1": "7553 Harness Circle",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11005,
+          "AddressLine1": "7305 Humphrey Drive",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11006,
+          "AddressLine1": "2612 Berry Dr",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11007,
+          "AddressLine1": "942 Brook Street",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11008,
+          "AddressLine1": "624 Peabody Road",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11009,
+          "AddressLine1": "3839 Northgate Road",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11010,
+          "AddressLine1": "7800 Corrinne Court",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11011,
+          "AddressLine1": "1224 Shoenic",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11012,
+          "AddressLine1": "4785 Scott Street",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11013,
+          "AddressLine1": "7902 Hudson Ave.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11014,
+          "AddressLine1": "9011 Tank Drive",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11015,
+          "AddressLine1": "244 Willow Pass Road",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11016,
+          "AddressLine1": "9666 Northridge Ct.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11017,
+          "AddressLine1": "7330 Saddlehill Lane",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11018,
+          "AddressLine1": "244 Rivewview",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11019,
+          "AddressLine1": "7832 Landing Dr",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11020,
+          "AddressLine1": "7156 Rose Dr.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11021,
+          "AddressLine1": "8148 W. Lake Dr.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11022,
+          "AddressLine1": "1769 Nicholas Drive",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11023,
+          "AddressLine1": "4499 Valley Crest",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11024,
+          "AddressLine1": "8734 Oxford Place",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11025,
+          "AddressLine1": "2596 Franklin Canyon Road",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11026,
+          "AddressLine1": "8211 Leeds Ct.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11027,
+          "AddressLine1": "213 Valencia Place",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11028,
+          "AddressLine1": "9111 Rose Ann Ave",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11029,
+          "AddressLine1": "6385 Mark Twain",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11030,
+          "AddressLine1": "636 Vine Hill Way",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11031,
+          "AddressLine1": "6465 Detroit Ave.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11032,
+          "AddressLine1": "626 Bentley Street",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11033,
+          "AddressLine1": "5927 Rainbow Dr",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11034,
+          "AddressLine1": "5167 Condor Place",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11035,
+          "AddressLine1": "1873 Mt. Whitney Dr",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11036,
+          "AddressLine1": "3981 Augustine Drive",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11037,
+          "AddressLine1": "8915 Woodside Way",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11038,
+          "AddressLine1": "8357 Sandy Cove Lane",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11039,
+          "AddressLine1": "9353 Creekside Dr.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11040,
+          "AddressLine1": "3350 Kingswood Circle",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11041,
+          "AddressLine1": "5826 Escobar",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11042,
+          "AddressLine1": "1397 Paraiso Ct.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11043,
+          "AddressLine1": "1170 Shaw Rd",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11044,
+          "AddressLine1": "6935 Candle Dr",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11045,
+          "AddressLine1": "7466 La Vista Ave.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11046,
+          "AddressLine1": "2356 Orange St",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11047,
+          "AddressLine1": "2812 Mazatlan",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11048,
+          "AddressLine1": "1803 Potomac Dr.",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        },
+        {
+          "CustomerKey": 11049,
+          "AddressLine1": "6064 Madrid",
+          "AddressLine2": "",
+          "violation_reason": "Customer address has missing address lines"
+        }
+      ],
+      "sql": "SELECT c.CustomerKey,\n       c.AddressLine1,\n       c.AddressLine2,\n       'Customer address has missing address lines' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` c\nWHERE c.AddressLine1 IS NULL\n  OR c.AddressLine1 = ''\n  OR c.AddressLine2 IS NULL\n  OR c.AddressLine2 = ''",
+      "severity": "MEDIUM",
+      "description": "This rule checks if any customer in the dimcustomer table has missing address lines (AddressLine1 or AddressLine2).",
+      "timing_sec": {
+        "sql": 2.664
+      }
+    }
+  ]
+}
