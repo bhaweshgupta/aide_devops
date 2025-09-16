@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "pass": 1,
+    "fail": 0,
+    "duration": "00:00:01",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [],
+  "log": "[start] Submitting 1 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/1: Minimum row count in factresellersales\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "Minimum row count in factresellersales",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:49:45.184962+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "0c6dba0c-92ef-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111945.184850Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT COUNT(*) AS ROW_COUNT,\n       'factresellersales table contains fewer than 10 rows' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`factresellersales`\nHAVING COUNT(*) < 10",
+      "severity": "CRITICAL",
+      "description": "Ensure the factresellersales table contains at least 10 rows to avoid false failure scenarios in downstream rules.",
+      "timing_sec": {
+        "sql": 1.705
+      }
+    }
+  ]
+}
