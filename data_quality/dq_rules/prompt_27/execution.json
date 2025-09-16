@@ -1,0 +1,975 @@
+{
+  "summary": {
+    "pass": 4,
+    "fail": 2,
+    "duration": "00:00:01",
+    "warehouse": "0e7ef356fe37e56c"
+  },
+  "violations": [
+    {
+      "rule": "validate_size_and_color",
+      "table": "",
+      "keys": "",
+      "detail": "50 rows",
+      "severity": "MEDIUM"
+    },
+    {
+      "rule": "active_vs_discontinued_items",
+      "table": "",
+      "keys": "",
+      "detail": "50 rows",
+      "severity": "MEDIUM"
+    }
+  ],
+  "log": "[start] Submitting 6 rules to 0e7ef356fe37e56c\n[run] Executing rule 1/6: unique_business_ids\n[run] Executing rule 2/6: required_attributes_present\n[run] Executing rule 3/6: validate_size_and_color\n[run] Executing rule 4/6: active_vs_discontinued_items\n[run] Executing rule 5/6: subcategory_to_category_link\n[run] Executing rule 6/6: scd_period_consistency\n[end] Completed",
+  "per_rule": [
+    {
+      "name": "unique_business_ids",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:45:02.359252+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "63d9f1b2-92ee-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111502.359153Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT ProductKey,\n       COUNT(*) AS duplicate_count,\n       'Duplicate ProductKey found' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproduct`\nGROUP BY ProductKey\nHAVING COUNT(*) > 1",
+      "severity": "CRITICAL",
+      "description": "Ensure that business IDs (ProductKey) in the dimproduct table are unique.",
+      "timing_sec": {
+        "sql": 3.105
+      }
+    },
+    {
+      "name": "required_attributes_present",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:45:03.983209+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "64d1c086-92ee-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111503.983126Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT ProductKey,\n       EnglishProductName,\n       Color,\n       'Required attributes are missing' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproduct`\nWHERE EnglishProductName IS NULL\n  OR Color IS NULL",
+      "severity": "HIGH",
+      "description": "Verify that required attributes (EnglishProductName, Color) are not null in the dimproduct table.",
+      "timing_sec": {
+        "sql": 1.62
+      }
+    },
+    {
+      "name": "validate_size_and_color",
+      "status": "failed",
+      "row_count": 50,
+      "details": {
+        "passed": false,
+        "row_count": 50,
+        "ge_available": true,
+        "details": {
+          "success": false,
+          "results": [
+            {
+              "success": false,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 50
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 0,
+            "unsuccessful_expectations": 1,
+            "success_percent": 0
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:45:05.884387+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "65f3d594-92ee-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111505.884293Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [
+        {
+          "ProductKey": 1,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 2,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 3,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 4,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 5,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 6,
+          "SIZE": "",
+          "Color": "Black",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 7,
+          "SIZE": "",
+          "Color": "Black",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 8,
+          "SIZE": "",
+          "Color": "Black",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 9,
+          "SIZE": "",
+          "Color": "Silver",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 10,
+          "SIZE": "",
+          "Color": "Silver",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 11,
+          "SIZE": "",
+          "Color": "Black",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 12,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 13,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 14,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 15,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 16,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 17,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 18,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 19,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 20,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 21,
+          "SIZE": "",
+          "Color": "Silver",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 22,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 23,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 24,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 25,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 26,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 27,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 28,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 29,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 30,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 31,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 32,
+          "SIZE": "",
+          "Color": "Silver",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 33,
+          "SIZE": "",
+          "Color": "Silver",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 34,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 35,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 36,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 37,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 38,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 39,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 40,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 41,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 42,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 43,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 44,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 45,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 46,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 47,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 48,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 49,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        },
+        {
+          "ProductKey": 50,
+          "SIZE": "",
+          "Color": "NA",
+          "violation_reason": "Invalid Size or Color value"
+        }
+      ],
+      "sql": "SELECT ProductKey,\n       SIZE,\n       Color,\n       'Invalid Size or Color value' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproduct`\nWHERE SIZE NOT IN ('Small',\n                   'Medium',\n                   'Large')\n  OR Color NOT IN ('Red',\n                   'Blue',\n                   'Green',\n                   'Black',\n                   'White')",
+      "severity": "MEDIUM",
+      "description": "Ensure that Size and Color values in dimproduct are within their respective domains.",
+      "timing_sec": {
+        "sql": 1.897
+      }
+    },
+    {
+      "name": "active_vs_discontinued_items",
+      "status": "failed",
+      "row_count": 50,
+      "details": {
+        "passed": false,
+        "row_count": 50,
+        "ge_available": true,
+        "details": {
+          "success": false,
+          "results": [
+            {
+              "success": false,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 50
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 0,
+            "unsuccessful_expectations": 1,
+            "success_percent": 0
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:45:07.535739+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "66efc066-92ee-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111507.535577Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [
+        {
+          "ProductKey": 212,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 213,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 215,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 216,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 218,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 219,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 220,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 221,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 223,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 224,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 226,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 227,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 229,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 230,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 232,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 233,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 235,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 236,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 238,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 239,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 241,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 242,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 244,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 245,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 247,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 248,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 250,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 251,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 253,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 254,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 256,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 257,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 259,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 260,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 262,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 263,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 264,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 265,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 266,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 267,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 268,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 269,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 270,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 271,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 272,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 273,
+          "EndDate": "2008-12-27T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 274,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 275,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 276,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        },
+        {
+          "ProductKey": 277,
+          "EndDate": "2007-12-28T00:00:00Z",
+          "violation_reason": "Item is active but has an EndDate"
+        }
+      ],
+      "sql": "SELECT ProductKey,\n       EndDate,\n       'Item is active but has an EndDate' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproduct`\nWHERE EndDate IS NOT NULL\n  AND EndDate <= current_date()",
+      "severity": "MEDIUM",
+      "description": "Distinguish active from discontinued items based on the EndDate column in dimproduct.",
+      "timing_sec": {
+        "sql": 1.646
+      }
+    },
+    {
+      "name": "subcategory_to_category_link",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:45:10.174754+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "688281ca-92ee-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111510.174681Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "SELECT s.ProductSubcategoryKey,\n       s.ProductCategoryKey,\n       'Subcategory not linked to a valid category' AS violation_reason\nFROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproductsubcategory` s\nLEFT JOIN `aigdqr-ragstoriches`.`adv_works_dw`.`dimproductcategory` c ON s.ProductCategoryKey = c.ProductCategoryKey\nWHERE c.ProductCategoryKey IS NULL",
+      "severity": "HIGH",
+      "description": "Confirm that each subcategory in dimproductsubcategory is correctly linked to a category in dimproductcategory.",
+      "timing_sec": {
+        "sql": 2.631
+      }
+    },
+    {
+      "name": "scd_period_consistency",
+      "status": "passed",
+      "row_count": 0,
+      "details": {
+        "passed": true,
+        "row_count": 0,
+        "ge_available": true,
+        "details": {
+          "success": true,
+          "results": [
+            {
+              "success": true,
+              "expectation_config": {
+                "expectation_type": "expect_table_row_count_to_equal",
+                "kwargs": {
+                  "value": 0,
+                  "result_format": "BASIC"
+                },
+                "meta": {}
+              },
+              "result": {
+                "observed_value": 0
+              },
+              "meta": {},
+              "exception_info": {
+                "raised_exception": false,
+                "exception_message": null,
+                "exception_traceback": null
+              }
+            }
+          ],
+          "evaluation_parameters": {},
+          "statistics": {
+            "evaluated_expectations": 1,
+            "successful_expectations": 1,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100
+          },
+          "meta": {
+            "great_expectations_version": "0.18.21",
+            "expectation_suite_name": "default",
+            "run_id": {
+              "run_name": null,
+              "run_time": "2025-09-16T16:45:11.992295+05:30"
+            },
+            "batch_kwargs": {
+              "ge_batch_id": "6997d2ae-92ee-11f0-96ed-4a66d731dcaa"
+            },
+            "batch_markers": {},
+            "batch_parameters": {},
+            "validation_time": "20250916T111511.992202Z",
+            "expectation_suite_meta": {
+              "great_expectations_version": "0.18.21"
+            }
+          }
+        }
+      },
+      "sample": [],
+      "sql": "WITH period_check AS\n  (SELECT ProductKey,\n          StartDate,\n          EndDate,\n          ROW_NUMBER() OVER (PARTITION BY ProductKey\n                             ORDER BY StartDate) AS rn\n   FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimproduct`)\nSELECT a.ProductKey,\n       a.StartDate,\n       a.EndDate,\n       b.StartDate AS next_start_date,\n       'Overlapping SCD periods detected' AS violation_reason\nFROM period_check a\nJOIN period_check b ON a.ProductKey = b.ProductKey\nAND a.rn = b.rn - 1\nWHERE a.EndDate > b.StartDate",
+      "severity": "CRITICAL",
+      "description": "Ensure that SCD periods in dimproduct (StartDate and EndDate) are consistent and non-overlapping.",
+      "timing_sec": {
+        "sql": 1.814
+      }
+    }
+  ]
+}
