@@ -1,0 +1,313 @@
+
+        <!doctype html>
+        <html>
+        <head>
+          <meta charset="utf-8" />
+          <title>Qualitron — Data Quality Report</title>
+          <style>
+            :root {
+              --accent: #00A79D;
+              --accent-hover: #008E86;
+              --text: #0E141B;
+              --text-subtle: #5E6A75;
+              --surface: #FFFFFF;
+              --surface-alt: #F6F8FA;
+              --border: #E6E9EF;
+              --radius: 12px;
+              --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+              --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+            }
+            body {
+              font-family: var(--font-sans);
+              margin: 24px;
+              background: var(--surface);
+              color: var(--text);
+            }
+            .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+            .logo-badge {
+              padding: 4px 8px;
+              border-radius: var(--radius);
+              border: 1px solid rgba(0,0,0,0.12);
+              color: var(--accent);
+              font-weight: 600;
+              letter-spacing: 0.06em;
+            }
+            .brand-title { font-size: 16px; font-weight: 600; }
+            .brand-sub { font-size: 12px; color: var(--text-subtle); }
+            .rule { border: 1px solid var(--border); padding: 12px; margin: 12px 0; border-radius: var(--radius); background: var(--surface); }
+            .status { text-transform: uppercase; font-size: 12px; padding: 2px 6px; border-radius: 999px; margin-left: 8px; }
+            .status.passed { background: #e6ffed; color: #036400; border: 1px solid #b5e6bf; }
+            .status.failed { background: #ffebe6; color: #970000; border: 1px solid #f3b1a3; }
+            .status.error  { background: #fff4e5; color: #8a6d3b; border: 1px solid #ffd9a6; }
+            table { border-collapse: collapse; margin-top: 8px; width: 100%; }
+            th, td { border: 1px solid var(--border); padding: 6px; font-size: 12px; }
+            th { background: var(--surface-alt); text-align: left; }
+            pre { white-space: pre-wrap; background: var(--surface-alt); padding: 8px; border: 1px solid var(--border); border-radius: 8px; }
+            .meta { display: flex; gap: 16px; color: #333; font-size: 13px; margin: 6px 0; }
+            .desc { color: #444; }
+            .divider { height: 1px; background: var(--border); margin: 12px 0; }
+            .header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+            .header h1 { margin: 0; font-size: 20px; }
+            .ts { color: var(--text-subtle); font-size: 12px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="brand">
+              <div class="logo-badge">[ QUALITRON ]</div>
+              <div>
+                <div class="brand-title">Qualitron – AI Data Quality</div>
+                <div class="brand-sub">EPAM-inspired single-page UI</div>
+              </div>
+            </div>
+            <div class="ts">Generated 2025-09-16 11:31:00 UTC</div>
+          </div>
+          <div class="divider"></div>
+
+                <section class="rule">
+                  <h2>
+                    Customer addresses with missing or invalid postal codes
+                    <span class="status passed">passed</span>
+                  </h2>
+                  <div class="meta">
+                    <div><b>Severity:</b> HIGH</div>
+                    <div><b>Violating rows:</b> 0</div>
+                  </div>
+                  <details>
+                    <summary>SQL</summary>
+                    <pre>SELECT c.CustomerKey,
+       c.AddressLine1,
+       c.AddressLine2,
+       g.PostalCode,
+       &#x27;Customer address has missing or invalid postal code&#x27; AS violation_reason
+FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` c
+LEFT JOIN `aigdqr-ragstoriches`.`adv_works_dw`.`dimgeography` g ON c.GeographyKey = g.GeographyKey
+WHERE g.PostalCode IS NULL
+  OR g.PostalCode = &#x27;&#x27;</pre>
+                  </details>
+                  <details>
+                    <summary>Validation details</summary>
+                    <pre>{
+  &quot;passed&quot;: true,
+  &quot;row_count&quot;: 0,
+  &quot;ge_available&quot;: true,
+  &quot;details&quot;: {
+    &quot;success&quot;: true,
+    &quot;results&quot;: [
+      {
+        &quot;success&quot;: true,
+        &quot;expectation_config&quot;: {
+          &quot;expectation_type&quot;: &quot;expect_table_row_count_to_equal&quot;,
+          &quot;kwargs&quot;: {
+            &quot;value&quot;: 0,
+            &quot;result_format&quot;: &quot;BASIC&quot;
+          },
+          &quot;meta&quot;: {}
+        },
+        &quot;result&quot;: {
+          &quot;observed_value&quot;: 0
+        },
+        &quot;meta&quot;: {},
+        &quot;exception_info&quot;: {
+          &quot;raised_exception&quot;: false,
+          &quot;exception_message&quot;: null,
+          &quot;exception_traceback&quot;: null
+        }
+      }
+    ],
+    &quot;evaluation_parameters&quot;: {},
+    &quot;statistics&quot;: {
+      &quot;evaluated_expectations&quot;: 1,
+      &quot;successful_expectations&quot;: 1,
+      &quot;unsuccessful_expectations&quot;: 0,
+      &quot;success_percent&quot;: 100
+    },
+    &quot;meta&quot;: {
+      &quot;great_expectations_version&quot;: &quot;0.18.21&quot;,
+      &quot;expectation_suite_name&quot;: &quot;default&quot;,
+      &quot;run_id&quot;: {
+        &quot;run_name&quot;: null,
+        &quot;run_time&quot;: &quot;2025-09-16T17:00:09.388768+05:30&quot;
+      },
+      &quot;batch_kwargs&quot;: {
+        &quot;ge_batch_id&quot;: &quot;807b9e90-92f0-11f0-96ed-4a66d731dcaa&quot;
+      },
+      &quot;batch_markers&quot;: {},
+      &quot;batch_parameters&quot;: {},
+      &quot;validation_time&quot;: &quot;20250916T113009.388632Z&quot;,
+      &quot;expectation_suite_meta&quot;: {
+        &quot;great_expectations_version&quot;: &quot;0.18.21&quot;
+      }
+    }
+  }
+}</pre>
+                  </details>
+
+                  <p class="desc">This rule checks if any customer in the dimcustomer table has a missing or invalid postal code by verifying the postal code against the dimgeography table.</p>
+                </section>
+
+                <section class="rule">
+                  <h2>
+                    Customer addresses with inconsistent geography keys
+                    <span class="status passed">passed</span>
+                  </h2>
+                  <div class="meta">
+                    <div><b>Severity:</b> CRITICAL</div>
+                    <div><b>Violating rows:</b> 0</div>
+                  </div>
+                  <details>
+                    <summary>SQL</summary>
+                    <pre>SELECT c.CustomerKey,
+       c.GeographyKey,
+       &#x27;Customer references an invalid geography key&#x27; AS violation_reason
+FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` c
+WHERE NOT EXISTS
+    (SELECT 1
+     FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimgeography` g
+     WHERE c.GeographyKey = g.GeographyKey)</pre>
+                  </details>
+                  <details>
+                    <summary>Validation details</summary>
+                    <pre>{
+  &quot;passed&quot;: true,
+  &quot;row_count&quot;: 0,
+  &quot;ge_available&quot;: true,
+  &quot;details&quot;: {
+    &quot;success&quot;: true,
+    &quot;results&quot;: [
+      {
+        &quot;success&quot;: true,
+        &quot;expectation_config&quot;: {
+          &quot;expectation_type&quot;: &quot;expect_table_row_count_to_equal&quot;,
+          &quot;kwargs&quot;: {
+            &quot;value&quot;: 0,
+            &quot;result_format&quot;: &quot;BASIC&quot;
+          },
+          &quot;meta&quot;: {}
+        },
+        &quot;result&quot;: {
+          &quot;observed_value&quot;: 0
+        },
+        &quot;meta&quot;: {},
+        &quot;exception_info&quot;: {
+          &quot;raised_exception&quot;: false,
+          &quot;exception_message&quot;: null,
+          &quot;exception_traceback&quot;: null
+        }
+      }
+    ],
+    &quot;evaluation_parameters&quot;: {},
+    &quot;statistics&quot;: {
+      &quot;evaluated_expectations&quot;: 1,
+      &quot;successful_expectations&quot;: 1,
+      &quot;unsuccessful_expectations&quot;: 0,
+      &quot;success_percent&quot;: 100
+    },
+    &quot;meta&quot;: {
+      &quot;great_expectations_version&quot;: &quot;0.18.21&quot;,
+      &quot;expectation_suite_name&quot;: &quot;default&quot;,
+      &quot;run_id&quot;: {
+        &quot;run_name&quot;: null,
+        &quot;run_time&quot;: &quot;2025-09-16T17:00:11.105438+05:30&quot;
+      },
+      &quot;batch_kwargs&quot;: {
+        &quot;ge_batch_id&quot;: &quot;81819c2c-92f0-11f0-96ed-4a66d731dcaa&quot;
+      },
+      &quot;batch_markers&quot;: {},
+      &quot;batch_parameters&quot;: {},
+      &quot;validation_time&quot;: &quot;20250916T113011.105314Z&quot;,
+      &quot;expectation_suite_meta&quot;: {
+        &quot;great_expectations_version&quot;: &quot;0.18.21&quot;
+      }
+    }
+  }
+}</pre>
+                  </details>
+
+                  <p class="desc">This rule ensures that all customers in the dimcustomer table reference valid geography keys in the dimgeography table.</p>
+                </section>
+
+                <section class="rule">
+                  <h2>
+                    Customer addresses with missing address lines
+                    <span class="status failed">failed</span>
+                  </h2>
+                  <div class="meta">
+                    <div><b>Severity:</b> MEDIUM</div>
+                    <div><b>Violating rows:</b> 50</div>
+                  </div>
+                  <details>
+                    <summary>SQL</summary>
+                    <pre>SELECT c.CustomerKey,
+       c.AddressLine1,
+       c.AddressLine2,
+       &#x27;Customer address has missing address lines&#x27; AS violation_reason
+FROM `aigdqr-ragstoriches`.`adv_works_dw`.`dimcustomer` c
+WHERE c.AddressLine1 IS NULL
+  OR c.AddressLine1 = &#x27;&#x27;
+  OR c.AddressLine2 IS NULL
+  OR c.AddressLine2 = &#x27;&#x27;</pre>
+                  </details>
+                  <details>
+                    <summary>Validation details</summary>
+                    <pre>{
+  &quot;passed&quot;: false,
+  &quot;row_count&quot;: 50,
+  &quot;ge_available&quot;: true,
+  &quot;details&quot;: {
+    &quot;success&quot;: false,
+    &quot;results&quot;: [
+      {
+        &quot;success&quot;: false,
+        &quot;expectation_config&quot;: {
+          &quot;expectation_type&quot;: &quot;expect_table_row_count_to_equal&quot;,
+          &quot;kwargs&quot;: {
+            &quot;value&quot;: 0,
+            &quot;result_format&quot;: &quot;BASIC&quot;
+          },
+          &quot;meta&quot;: {}
+        },
+        &quot;result&quot;: {
+          &quot;observed_value&quot;: 50
+        },
+        &quot;meta&quot;: {},
+        &quot;exception_info&quot;: {
+          &quot;raised_exception&quot;: false,
+          &quot;exception_message&quot;: null,
+          &quot;exception_traceback&quot;: null
+        }
+      }
+    ],
+    &quot;evaluation_parameters&quot;: {},
+    &quot;statistics&quot;: {
+      &quot;evaluated_expectations&quot;: 1,
+      &quot;successful_expectations&quot;: 0,
+      &quot;unsuccessful_expectations&quot;: 1,
+      &quot;success_percent&quot;: 0
+    },
+    &quot;meta&quot;: {
+      &quot;great_expectations_version&quot;: &quot;0.18.21&quot;,
+      &quot;expectation_suite_name&quot;: &quot;default&quot;,
+      &quot;run_id&quot;: {
+        &quot;run_name&quot;: null,
+        &quot;run_time&quot;: &quot;2025-09-16T17:00:13.773460+05:30&quot;
+      },
+      &quot;batch_kwargs&quot;: {
+        &quot;ge_batch_id&quot;: &quot;8318b610-92f0-11f0-96ed-4a66d731dcaa&quot;
+      },
+      &quot;batch_markers&quot;: {},
+      &quot;batch_parameters&quot;: {},
+      &quot;validation_time&quot;: &quot;20250916T113013.773371Z&quot;,
+      &quot;expectation_suite_meta&quot;: {
+        &quot;great_expectations_version&quot;: &quot;0.18.21&quot;
+      }
+    }
+  }
+}</pre>
+                  </details>
+                  <table><thead><tr><th>CustomerKey</th><th>AddressLine1</th><th>AddressLine2</th><th>violation_reason</th></tr></thead><tbody><tr><td>11000</td><td>3761 N. 14th St</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11001</td><td>2243 W St.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11002</td><td>5844 Linden Land</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11003</td><td>1825 Village Pl.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11004</td><td>7553 Harness Circle</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11005</td><td>7305 Humphrey Drive</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11006</td><td>2612 Berry Dr</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11007</td><td>942 Brook Street</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11008</td><td>624 Peabody Road</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11009</td><td>3839 Northgate Road</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11010</td><td>7800 Corrinne Court</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11011</td><td>1224 Shoenic</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11012</td><td>4785 Scott Street</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11013</td><td>7902 Hudson Ave.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11014</td><td>9011 Tank Drive</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11015</td><td>244 Willow Pass Road</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11016</td><td>9666 Northridge Ct.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11017</td><td>7330 Saddlehill Lane</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11018</td><td>244 Rivewview</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11019</td><td>7832 Landing Dr</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11020</td><td>7156 Rose Dr.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11021</td><td>8148 W. Lake Dr.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11022</td><td>1769 Nicholas Drive</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11023</td><td>4499 Valley Crest</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11024</td><td>8734 Oxford Place</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11025</td><td>2596 Franklin Canyon Road</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11026</td><td>8211 Leeds Ct.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11027</td><td>213 Valencia Place</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11028</td><td>9111 Rose Ann Ave</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11029</td><td>6385 Mark Twain</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11030</td><td>636 Vine Hill Way</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11031</td><td>6465 Detroit Ave.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11032</td><td>626 Bentley Street</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11033</td><td>5927 Rainbow Dr</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11034</td><td>5167 Condor Place</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11035</td><td>1873 Mt. Whitney Dr</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11036</td><td>3981 Augustine Drive</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11037</td><td>8915 Woodside Way</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11038</td><td>8357 Sandy Cove Lane</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11039</td><td>9353 Creekside Dr.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11040</td><td>3350 Kingswood Circle</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11041</td><td>5826 Escobar</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11042</td><td>1397 Paraiso Ct.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11043</td><td>1170 Shaw Rd</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11044</td><td>6935 Candle Dr</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11045</td><td>7466 La Vista Ave.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11046</td><td>2356 Orange St</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11047</td><td>2812 Mazatlan</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11048</td><td>1803 Potomac Dr.</td><td></td><td>Customer address has missing address lines</td></tr><tr><td>11049</td><td>6064 Madrid</td><td></td><td>Customer address has missing address lines</td></tr></tbody></table>
+                  <p class="desc">This rule checks if any customer in the dimcustomer table has missing address lines (AddressLine1 or AddressLine2).</p>
+                </section>
+
+        </body>
+        </html>
